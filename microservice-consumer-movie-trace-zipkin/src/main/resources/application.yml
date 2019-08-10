@@ -1,0 +1,42 @@
+server:
+  port: 8010
+logging:
+  #path: ./logs/
+  #config: classpath:logback-spring.xml
+  level:
+    com.itmuch.cloud.microserviceconsumermovie.feign.UserFeignClient: debug
+    org.springframework.cloud.sleuth: DEBUG
+#Actuator
+info:
+  app:
+    name: microservice-consumer-movie
+    encoding: UTF-8
+    java:
+      source: 1.8
+      target: 1.8
+feign:                    #声明 Feign 的 Hystrix 支持
+  hystrix:
+    enabled: true
+spring:
+  application:
+    name: microservice-consumer-movie
+  zipkin:
+    base-url: http://192.168.99.100:9411
+  sleuth:
+    traceId128: true
+    sampler:
+      probability: 1.0 #采样的比例.默认是0.1即10%
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123456@peer1:8761/eureka/
+    healthcheck:
+      enable: true
+  instance:
+    prefer-ip-address: true # 将自己的IP注册到Eureka Server。若不配置或设置为false，表示注册微服务所在操作系统的hostname到Eureka Server
+ 
+management:                            #配置Actuator能够查看详细信息
+  endpoint:
+    health:
+      show-details: always

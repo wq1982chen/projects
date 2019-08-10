@@ -1,0 +1,18 @@
+server:
+  port: 8031
+spring:
+  application:
+    name: microservice-hystrix-turbine
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/ #defaultZone: http://root:123456@peer1:8761/eureka/
+    healthcheck:
+      enable: true
+  instance:
+    prefer-ip-address: true # 将自己的IP注册到Eureka Server。若不配置或设置为false，表示注册微服务所在操作系统的hostname到Eureka Server
+turbine: #turbine在eureka中找到两个服务,并聚合两个微服务的监控数据
+  appConfig: microservice-consumer-movie,microservice-consumer-moive-feign-hystrix-fallback-stream
+  clusterNameExpression: "'default'"
+  combine-host-port: true
+  instanceUrlSuffix: /hystrix.stream

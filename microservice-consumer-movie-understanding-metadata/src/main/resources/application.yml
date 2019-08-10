@@ -1,0 +1,11 @@
+server:
+  port: 8010
+  
+spring:
+  application: #增加注册eureka的服务名称
+    name: microservice-consumer-moive
+ 
+eureka: #增加eureka client的主要配置信息
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/, http://peer1:8762/eureka/

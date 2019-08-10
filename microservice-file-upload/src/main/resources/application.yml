@@ -1,0 +1,28 @@
+server:
+  port: 8050
+#Spring Boot1.4版本 spring.http.multipart.maxFileSize = 10MB#默认是1Mb
+#										  spring.http.multipart.maxRequestSize=100MB#默认是10Mb
+#Spring Boot2.0版本 spring.servlet.multipart.max-file-size = 10MB
+#										  spring.servlet.multipart.max-request-size=100MB
+spring:
+  application:
+    name: microservice-file-upload
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 30MB
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/
+    healthcheck:
+      enable: true
+  instance:
+    prefer-ip-address: true # 将自己的IP注册到Eureka Server。若不配置或设置为false，表示注册微服务所在操作系统的hostname到Eureka Server
+#Actuator打开默认端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes

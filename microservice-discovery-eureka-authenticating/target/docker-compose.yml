@@ -1,0 +1,16 @@
+version: '3'
+services:
+  eureka: #指定服务器名
+    container_name: ms_eureka #指定容器名
+    restart: always
+    build: #指定Dockerfile的位置,不需要构建镜像可以直接删除此段
+      context: .
+      dockerfile: Dockerfile
+    image: eureka:1.0.0
+    #volumes:
+      #- d://docker/tomcat/webapps:/usr/local/tomcat/webapps
+      #- d://docker/tomcat/logs:/usr/local/tomcat/logs
+    ports:
+      - "8761:8761"
+    environment:
+      TZ: Asia/Shanghai

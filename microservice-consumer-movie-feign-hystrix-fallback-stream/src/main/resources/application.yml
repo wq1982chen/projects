@@ -1,0 +1,25 @@
+server:
+  port: 8020
+  
+spring:
+  application: #增加注册eureka的服务名称
+    name: microservice-consumer-moive-feign-hystrix-fallback-stream
+ 
+eureka: #增加eureka client的主要配置信息
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      prefer-ip-address: true
+    healthcheck:
+      enabled: true #使用health端点来代替心跳表明服务是否可用,反应到eureka server ui上服务的UP还是DOWN
+management:
+  endpoint:
+      web:
+        exposure:
+            include: "*" #Actuator的所有端点都打开
+      health:
+        show-details: always
+feign:
+  hystrix:
+    enabled: true #此段配置是为了能在Feign中使用Hystrix回退方法

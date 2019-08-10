@@ -1,0 +1,18 @@
+server:
+  port: 8031
+spring:
+  application:
+    name: microservice-hystrix-turbine-mq
+  rabbitmq:
+    host: 192.168.99.100
+    port: 5672
+    username: admin
+    password: admin
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/
+    healthcheck:
+      enable: true
+  instance:
+    prefer-ip-address: true # 将自己的IP注册到Eureka Server。若不配置或设置为false，表示注册微服务所在操作系统的hostname到Eureka Server

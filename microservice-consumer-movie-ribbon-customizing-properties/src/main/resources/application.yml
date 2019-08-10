@@ -1,0 +1,21 @@
+server:
+  port: 8010
+  
+spring:
+  application: #增加注册eureka的服务名称
+    name: microservice-consumer-moive
+ 
+eureka: #增加eureka client的主要配置信息
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true #使用health端点来代替心跳表明服务是否可用,反应到eureka server ui上服务的UP还是DOWN
+management: #打开Actuator所有的健康监测端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+microservice-provider-user: #配置这段即可客户化负载均衡策略
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

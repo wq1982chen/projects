@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.itmuch.cloud</groupId>
+  <artifactId>microservice-trace-zipkin-server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>microservice-trace-zipkin-server</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+   <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.4.RELEASE</version><!-- 配置成2.1.5会在xml文件上报错,估计是高版本不兼容的问题 -->
+    <relativePath/> <!-- lookup parent from repository -->
+   </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>io.zipkin.java</groupId>
+    	<artifactId>zipkin-autoconfigure-ui</artifactId>
+    	<version>2.12.9</version>
+	</dependency>
+	<dependency>
+    	<groupId>io.zipkin.java</groupId>
+    	<artifactId>zipkin-server</artifactId>
+    	<version>2.12.9</version>
+    	<exclusions>
+    		<exclusion><!-- 报日志冲突,必须屏蔽一个日志实现类 -->
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-slf4j-impl</artifactId>
+    		</exclusion>
+    	</exclusions>
+	</dependency>
+  </dependencies>
+</project>

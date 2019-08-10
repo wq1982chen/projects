@@ -1,0 +1,27 @@
+server:
+  port: 8001
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:                                      # 指定数据源
+    platform: MySQL                        	# 指定数据源类型
+    url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC              # 指定数据库的连接地址
+    driver-class-name: com.mysql.cj.jdbc.Driver   # 指定h2数据库的驱动
+    username: root                      # 指定h2数据库的登录用户
+    password: root                  # 指定h2数据库的登录密码
+  application:
+    name: microservice-provider-user # 指定注册到Eureka Server上的应用名称
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/
+      #defaultZone: http://root:123456@peer1:8761/eureka/
+    healthcheck:
+      enable: true
+  instance:
+    prefer-ip-address: true # 将自己的IP注册到Eureka Server。若不配置或设置为false，表示注册微服务所在操作系统的hostname到Eureka Server

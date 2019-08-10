@@ -1,0 +1,41 @@
+server:
+  port: 8000
+spring:
+  application: #增加注册eureka的服务名称
+    name: microservice-provider-user
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:                                      # 指定数据源
+    platform: MySQL                        	# 指定数据源类型
+    url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC              # 指定数据库的连接地址
+    driver-class-name: com.mysql.cj.jdbc.Driver   # 指定h2数据库的驱动
+    username: root                      # 指定h2数据库的登录用户
+    password: root                  # 指定h2数据库的登录密码
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+
+eureka: #增加eureka client的主要配置信息
+  client:
+    serviceUrl: #这里配置了多个Eureka服务,其实与配置单个没有区别,只是为了应对极端情况下才配置多个
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+info: #actuator的info信息通过info.*属性可自定义公开数据
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@

@@ -1,0 +1,4 @@
+com\itmuch\cloud\microserviceprovideruser\controller\UserController.class
+com\itmuch\cloud\microserviceprovideruser\dao\UserRepository.class
+com\itmuch\cloud\microserviceprovideruser\MicroserviceProviderUserApplication.class
+com\itmuch\cloud\microserviceprovideruser\pojo\User.class

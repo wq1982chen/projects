@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.test.springboot</groupId>
+  <artifactId>springboot-test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>springboot-test</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-test</artifactId>
+    	<version>2.1.2.RELEASE</version>
+    </dependency>
+   	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>
+	    <version>2.1.2.RELEASE</version>
+	</dependency>
+   	<dependency>
+   		<groupId>org.springframework.boot</groupId>
+   		<artifactId>spring-boot-devtools</artifactId>
+   		<version>2.1.2.RELEASE</version>
+   		<optional>true</optional>
+   	</dependency>
+   	<!--  JPA 引入 -->
+   	<dependency>
+    	<groupId>org.springframework.boot</groupId>
+   	 	<artifactId>spring-boot-starter-data-jpa</artifactId>
+    	<version>2.1.2.RELEASE</version>
+	</dependency>
+	<!-- Mysql 驱动 -->
+	<dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>8.0.14</version>
+</dependency>
+ 	<!-- Redis Sentinel -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-redis</artifactId>
+		<version>2.1.2.RELEASE</version>
+	</dependency>
+	 <dependency>
+  		<groupId>redis.clients</groupId>
+  		<artifactId>jedis</artifactId>
+  		<version>2.8.2</version>
+  	</dependency>
+	<!-- Session 共享 ,利用Redis -->
+	<dependency>
+    	<groupId>org.springframework.session</groupId>
+   	 	<artifactId>spring-session-data-redis</artifactId>
+    	<version>2.1.2.RELEASE</version>
+	</dependency>
+	<!-- SpringBoot 集成MyBatis  M1 -->
+	<dependency>
+    	<groupId>org.mybatis.spring.boot</groupId>
+    	<artifactId>mybatis-spring-boot-starter</artifactId>
+    	<version>2.0.0</version>
+	</dependency>
+	<!--  WebFlux -->
+	<dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-webflux</artifactId>
+    	<version>2.1.3.RELEASE</version>
+	</dependency>
+  </dependencies>
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <fork>true</fork>
+            </configuration>
+        </plugin>
+</plugins>
+</build>
+</project>

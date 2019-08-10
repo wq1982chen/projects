@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: peer1
+    
+# 启动时通过参数制定使用的配置文件,peer2是参数文件的一部分
+# java -jar xxxx.jar --spring.profiles.active=peer2

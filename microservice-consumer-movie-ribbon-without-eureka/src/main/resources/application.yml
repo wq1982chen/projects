@@ -1,0 +1,10 @@
+server:
+  port: 8010
+  
+spring:
+  application: #增加注册eureka的服务名称
+    name: microservice-consumer-moive
+
+microservice-provider-user: #配置服务
+  ribbon:
+    listOfServers: peer1:8000,peer2:8001

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tester
+Bundle-SymbolicName: osgi.tester
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: osgi.tester.Activator
+Bundle-Vendor: KK
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.osgi.framework;version="1.9.0",
+ org.osgi.service.event;version="1.4.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: osgi.tester.event,
+ osgi.tester.interfaces
+Automatic-Module-Name: osgi.tester

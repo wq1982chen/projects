@@ -1,0 +1,6 @@
+server:
+  port: 8030
+  
+spring:
+  application: #增加注册eureka的服务名称
+    name: microservice-hystrix-dashboad

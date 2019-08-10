@@ -1,0 +1,86 @@
+server:
+  port: 8040
+spring:
+  application:
+    name: microservice-gateway-zuul-aggregation
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 30MB
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123456@peer1:8761/eureka/
+    healthcheck:
+      enable: true
+  instance:
+    prefer-ip-address: true # 将自己的IP注册到Eureka Server。若不配置或设置为false，表示注册微服务所在操作系统的hostname到Eureka Server
+#Actuator打开默认端点http://localhost:8040/actuator/routes
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes
+hystrx.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+#1.自定义微服务的访问路径 http://localhost:8040/user/2
+#zuul:
+#  routes:
+#    microservice-provider-user: /user/**
+#2. 忽略指定微服务,zuul.ignored-services配置需要忽略的服务,多个用逗号分隔
+#zuul:
+#  ignored-services: microservice-provider-user, microservice-consumer-moive
+#3.忽略所有微服务,只路由指定微服务
+#zuul:
+#  ignored-services: '*'
+#  routes:
+#    microservice-provider-user: /user/**
+#4.同时指定微服务的serviceId和对应路径,这个意味着 HTTP 调用"/user"被转发到"microservice-provider-user"服务,效果等同于1
+#zuul:
+#  routes:
+#    user-route: #user-route仅仅是一个路由名称,可以随意取名
+#      service-id: microservice-provider-user
+#      path: /user/**
+#5.同时指定path和URL,确定是不能按HystrixCommand执行,同时也不能按Ribbon来负载均衡，例6可解决
+#zuul:
+#  routes:
+#    user-route: #user-route仅仅是一个路由名称,可以随意取名
+#      url: http://localhost:8000/**
+#      path: /user/**
+#6.同时指定path和URL,并且不破坏Zuul的Hystrix,Ribbon特性
+#zuul:
+#  routes:
+#    user-route: #user-route仅仅是一个路由名称,可以随意取名
+#      service-id: microservice-provider-user
+#      path: /user/**
+#ribbon:
+#  euraka:
+#    enable:false
+#microservice-provider-user:
+#  ribbon:
+#    listOfServers: localhost:8000,localhost:8001
+#7.使用正则表达式,指定Zuul的路由规则,借助PatternServiceRouteMapper
+# pattern.route.enabled是一个自定义的属性，意在是否打开正则表达式转换路由规则
+pattern:
+  route:
+    enabled: false
+#zuul:
+#  routes:
+#    user-route: #user-route仅仅是一个路由名称,可以随意取名
+#      service-id: microservice-provider-user
+#      path: /microservice-provider-user-v1/**
+#8. 路由前缀 http://api/microservice-provider-user/1会被转发到microservice-provider-user的/api/1
+#zuul:
+#  prefix:/api
+#  strip-prefix: false
+#  routes:
+#      microservice-provider-user:/user/**
+#9.忽略某些路径 , microservice-provider-user映射到/user/**路径下，但忽略该微服务包含的/admin/路径
+#zuul:
+#  ignoredPatterns: /**/admin/** #忽略所有包含/admin/的路径
+#  routes:
+#    microservice-provider-user:/user/**

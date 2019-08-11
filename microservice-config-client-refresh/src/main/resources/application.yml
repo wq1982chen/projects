@@ -1,0 +1,13 @@
+server:
+  port: 8081
+logging:
+  level:
+    root: INFO
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      #base-path: / #默认是/actuator 前缀，可以在这里修改
+      exposure:
+        include: "*"

@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: microservice-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wq1982chen/Repository4Kevin.git
+          #search-path: foo,bar* 搜索子目录,此配置将搜索foo目录和所有以bar开头的子目录
+          username: wq1982chen
+          password: github4kevin
+        #git: #让Config Server 启动时clone指定Git仓库
+          #uri: https://github.com/wq1982chen/Repository4Kevin.git
+          #repos:
+            #team_a:
+              #pattern: microserver-*
+              #clone-on-start: true
+              #uri: https://github.com/wq1982chen/Repository4Kevin.git
+logging:
+  level:
+    org.springframework.cloud: DEBUG
+    org.springframework.boot: DEBUG

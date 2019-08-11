@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    username: dbuser
+    password: '{cipher}3fab4e9143ed0f2ca8916f9ea4a91725f275a18a2c29ace507ab686e8bcd77c4'
+    #cipher是密码\暗号的意思

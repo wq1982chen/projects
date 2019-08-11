@@ -1,0 +1,13 @@
+#springcloud中的config加密出现以下问题：
+#                 The encrytion algorithm is not strong enough
+#解决方法:
+#  需要设置加密的key，但是一定要写在bootstrap.yml中
+encrypt:
+  key: kevinkey
+  
+spring:
+  cloud:
+    config:
+      server:
+        encrypt: #false直接返回密文,true是默认值，表示返回明文
+           enabled: false

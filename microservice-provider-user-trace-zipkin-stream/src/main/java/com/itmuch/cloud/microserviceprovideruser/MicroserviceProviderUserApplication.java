@@ -38,7 +38,7 @@ docker run -d \
 --publish 15672:15672 \
 rabbitmq:management
 4、容器启动之后就可以访问web 管理端
-http://http://192.168.99.100:15672，默认用户 guest ，密码 guest。
+http://192.168.99.100:15672，默认用户 guest ，密码 guest。
 
  docker run -it -d -p 9411:9411  
  -e zipkin.collector.rabbitmq.addresses=172.17.0.2:5672 \

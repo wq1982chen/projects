@@ -20,10 +20,10 @@ spring:
   sleuth:
     traceId128: true
     sampler:
-      probability: 1.0 #采样的比例.默认是0.1即10%
+      probability: 1.0 #采样的比例.默认是0.1即10%，因为在分布式系统中数据量会非常大,采样非常重要
     
 eureka:
-  client:
+  client :
     serviceUrl:
       defaultZone: http://root:123456@peer1:8761/eureka/
     healthcheck:

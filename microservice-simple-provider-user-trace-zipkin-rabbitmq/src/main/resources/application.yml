@@ -1,0 +1,53 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: microservice-provider-user
+#    rabbitmq: 为什么不用配这个队列也可以将链路信息发到rabbitmq的队列里去？难道是默认队列名？
+#      queue: zipkin
+  rabbitmq:
+    host: 192.168.99.100
+    port: 5672
+    username: admin
+    password: admin
+    listener:
+      type: direct # simple direct
+  #zipkin:
+  #  base-url: http://192.168.99.100:9411
+  sleuth:
+    traceId128: true
+    sampler:
+      probability: 1.0 #采样的比例.默认是0.1即10%,建议在测试时设置为1.0，因为在分布式系统中数据量会非常大,采样非常重要
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:                                      # 指定数据源
+    platform: MySQL                        	# 指定数据源类型
+    url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC              # 指定数据库的连接地址
+    driver-class-name: com.mysql.cj.jdbc.Driver   # 指定h2数据库的驱动
+    username: root                      # 指定h2数据库的登录用户
+    password: root                  # 指定h2数据库的登录密码
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+info: #actuator的info信息通过info.*属性可自定义公开数据
+  app:
+    name: "@project.artifactId@"
+    encoding: "@project.build.sourceEncoding@"
+    java:
+      source: "@java.version@"
+      target: "@java.version@"

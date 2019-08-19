@@ -1,0 +1,7 @@
+server:
+  port: 8010
+spring:  application:    name: microservice-consumer-moive
+  level:
+    root: INFO
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG

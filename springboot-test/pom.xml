@@ -21,6 +21,12 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency><!-- 作用: 会在META-INF下生成spring-configuration-metadata.json -->
+      <groupId>org.springframework.boot</groupId><!-- 作用: 主要是为IDE使用,可以在属性文件中通过ctrl+点击进入配置属性所在的类中 -->
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <version>2.2.0.RELEASE</version>
+      <optional>true</optional>
+    </dependency>
     <dependency>
     	<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-starter-test</artifactId>
